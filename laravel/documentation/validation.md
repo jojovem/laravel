@@ -63,6 +63,9 @@ Now you are familiar with the basic usage of the Validator class. You're ready t
 
 	'name' => 'required'
 
+#### Validate that an attribute is present, when another attribute is present:
+	'last_name' => 'required_with:first_name'
+
 <a name="rule-alpha"></a>
 ### Alpha, Alpha Numeric, & Alpha Dash
 
@@ -193,11 +196,11 @@ Many times, when updating a record, you want to use the unique rule, but exclude
 
 #### Validate that a date attribute is before a given date:
 
-	'birthdate' => 'before:1986-28-05';
+	'birthdate' => 'before:1986-05-28';
 
 #### Validate that a date attribute is after a given date:
 
-	'birthdate' => 'after:1986-28-05';
+	'birthdate' => 'after:1986-05-28';
 
 > **Note:** The **before** and **after** validation rules use the **strtotime** PHP function to convert your date to something the rule can understand.
 
@@ -363,7 +366,7 @@ In the example above, the custom required message will be used for the email att
 
 However, if you are using many custom error messages, specifying inline may become cumbersome and messy. For that reason, you can specify your custom messages in the **custom** array within the validation language file:
 
-#### Adding custom error messages to the validation langauge file:
+#### Adding custom error messages to the validation language file:
 
 	'custom' => array(
 		'email_required' => 'We need to know your e-mail address!',
@@ -414,7 +417,7 @@ As mentioned above, you may even specify and receive a list of parameters in you
 	Validator::register('awesome', function($attribute, $value, $parameters)
 	{
 	    return $value == $parameters[0];
-	}
+	});
 
 In this case, the parameters argument of your validation rule would receive an array containing one element: "yes".
 
